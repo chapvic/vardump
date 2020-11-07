@@ -27,8 +27,10 @@ SOFTWARE.
 #include "vardump.h"
 
 #ifdef _WIN64
+	#define BAD_HANDLE (void*)-1ULL
 	const char * hexmask = "%08I64X: ";
 #else
+	#define BAD_HANDLE (void*)-1UL
 	const char * hexmask = "%08X: ";
 #endif // ! _WIN64
 
@@ -74,7 +76,7 @@ void __cdecl fvardump(const char * filename, void * ptr, size_t len, int padding
 			if(fopen_s(&handle, filename, "a+")) return;
 		}
 	}
-	if(handle == INVALID_HANDLE_VALUE) return;
+	if(handle == BAD_HANDLE) return;
 	_dump(handle, ptr, len, padding);
 	fflush(handle);
 	if (filename) fclose(handle);

@@ -42,14 +42,6 @@ errno_t __cdecl freopen_s(FILE **_File, const char *_Filename, const char *_Mode
 errno_t __cdecl fopen_s(FILE **_File, const char *_Filename, const char *_Mode);
 #endif
 
-#ifndef INVALID_HANDLE_VALUE
-#ifdef _WIN64
-#define INVALID_HANDLE_VALUE (void*)-1ULL
-#else
-#define INVALID_HANDLE_VALUE (void*)-1UL
-#endif // _WIN64
-#endif // ! INVALID_HANDLE_VALUE
-
 void __cdecl vardump(void * ptr, size_t len, int padding);
 void __cdecl fvardump(const char * filename, void * ptr, size_t len, int padding, int force);
 
